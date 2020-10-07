@@ -47,8 +47,9 @@ def hideData(audio_path, message_path, dest, isEncrypted):
     message_length = "{0:b}".format(len(bin_message)).zfill(24) #message <= 1MB
     
     #check if message length <= wav nframes
-    if (len(bin_message) <= n_frames - 25):
-
+    if (len(bin_message) > n_frames - 25):
+        print("\nError : Ukuran pesan terlalu besar")
+    else:
         # Insert message in wav file
         # 1st byte for storing option : random->encrypt or sequential->not encrypt
         if ((temp[0] % 2 == 0) and (isEncrypted)):
@@ -86,8 +87,7 @@ def hideData(audio_path, message_path, dest, isEncrypted):
             params = (n_channels, sample_width, framerate, n_frames, comp_type, comp_name)
             wav_file2.setparams(params)
             wav_file2.writeframes(stegano_frames)
-        
-
+        print("\nPesan berhasil disembunyikan")
 if not os.path.exists('stegano_wav'):
     os.makedirs('stegano_wav')
 if not os.path.exists('extracted'):
@@ -112,3 +112,4 @@ else:
 
 
 hideData(audio_path, message_path, dest, isEncrypted)
+print("\n")

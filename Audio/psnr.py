@@ -15,6 +15,9 @@ amp_original, sr = librosa.load(ori)
 amp_stegano, sr2 = librosa.load(steg)
 
 if (len(amp_original) == len(amp_stegano)):
-	print("Hasil = " , PSNR(amp_original, amp_stegano) , "dB")
+	print("\nHasil = " , PSNR(amp_original, amp_stegano) , "dB")
 else:
-	print("Banyak frames kedua audio tidak sama")
+	print("\nError : Banyak frames kedua audio tidak sama")
+
+
+print("\n")

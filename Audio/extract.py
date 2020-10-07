@@ -74,7 +74,10 @@ def extractData(audio_path, dest):
     binary_format = bytearray(message_content)
     f.write(binary_format)
     f.close()
+
+    print("\nPesan berhasil diekstrak")
     
 audio_path = 'stegano_wav/' + input("Masukan nama file stegano wav:") + '.wav'
 dest = 'extracted/' + input("Masukan nama file pesan yang diekstrak:") + '.txt'
 extractData(audio_path, dest)
+print("\n")
