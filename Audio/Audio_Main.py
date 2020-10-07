@@ -1,13 +1,27 @@
+import sys
+from importlib import reload
+
 def main():
     
-    menu = int(input("Menu:\n1. Sembunyikan Pesan\n2. Ekstraksi Pesan\n3. Hitung PSNR\nPilih Menu:"))
-    if (menu == 1):
-        import hide
-    elif (menu == 2):
-        import extract
-    elif (menu == 3):
-        import psnr
-    else:
-        raise Exception("Enter correct input")
-
+    while(1):
+	    menu = int(input("Menu:\n1. Sembunyikan Pesan\n2. Ekstraksi Pesan\n3. Hitung PSNR\n4. Keluar\nPilih Menu:"))
+	    if (menu == 1):
+	    	if ('hide' not in sys.modules):
+	    		import hide
+	    	else:
+	    		hide = reload(hide)
+	    elif (menu == 2):
+	    	if ('extract' not in sys.modules):
+	    		import extract
+	    	else:
+	    		extract = reload(extract)
+	    elif (menu == 3):
+	    	if ('psnr' not in sys.modules):
+	    		import psnr
+	    	else:
+	    		psnr = reload(psnr)
+	    elif (menu == 4):
+	    	break
+	    else:
+	        raise Exception("Enter correct input")
 main()

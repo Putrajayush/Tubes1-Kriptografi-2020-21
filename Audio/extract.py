@@ -2,6 +2,7 @@ import wave
 import os
 from random import seed
 from random import sample
+from vigenere import Decrypt
 
 def dec(binary):
     binary = int(binary)
@@ -13,6 +14,12 @@ def dec(binary):
         i += 1
     return(decimal)
 
+def generateSeed(Key):
+    seed_num = 0
+    for i in range(len(Key)):
+        seed_num += ord(Key[i])
+    seed(seed_num)
+
 def extractData(audio_path, dest):
     with wave.open (audio_path, "rb") as wav_file:
         # Read audio data.
@@ -21,7 +28,11 @@ def extractData(audio_path, dest):
     
     #Find isEncrypted and insertion order 
     temp = bin(stegano_frames[0])
-    isEncrypted = temp[len(temp) - 1] == 1
+    isEncrypted = temp[len(temp) - 1] == '1'
+    if (isEncrypted):
+        Key = input("Masukan key dekripsi:")
+        generateSeed(Key)
+
     #Find message Length
     message_length = ''
     for i in range(1, 25):
@@ -66,7 +77,4 @@ def extractData(audio_path, dest):
     
 audio_path = 'stegano_wav/' + input("Masukan nama file stegano wav:") + '.wav'
 dest = 'extracted/' + input("Masukan nama file pesan yang diekstrak:") + '.txt'
-# Key = input("Masukan key enkripsi:")
-
-# generateSeed(Key)
 extractData(audio_path, dest)

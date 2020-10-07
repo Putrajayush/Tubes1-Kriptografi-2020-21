@@ -14,4 +14,7 @@ steg = 'stegano_wav/' + input("Audio Stegano:") + '.wav'
 amp_original, sr = librosa.load(ori)
 amp_stegano, sr2 = librosa.load(steg)
 
-print("Hasil = " , PSNR(amp_original, amp_stegano) , "dB")
+if (len(amp_original) == len(amp_stegano)):
+	print("Hasil = " , PSNR(amp_original, amp_stegano) , "dB")
+else:
+	print("Banyak frames kedua audio tidak sama")

@@ -2,6 +2,7 @@ import wave
 import os
 from random import seed
 from random import sample
+from vigenere import Encrypt
 
 def decToBin(num): 
     return bin(num).replace("0b", "") 
