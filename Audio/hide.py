@@ -88,6 +88,11 @@ def hideData(audio_path, message_path, dest, isEncrypted):
             wav_file2.writeframes(stegano_frames)
         
 
+if not os.path.exists('stegano_wav'):
+    os.makedirs('stegano_wav')
+if not os.path.exists('extracted'):
+    os.makedirs('extracted')
+
 random = int(input(
     "1. Sequential\n2. Random\nPilih sequential atau random: "))
 if(random == 1):
